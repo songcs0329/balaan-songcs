@@ -9,7 +9,7 @@
 }
 .form-container {
   min-width: 400px;
-  padding: 16px;
+  padding: 24px 16px;
   background-color: $white;
 }
 
@@ -101,4 +101,25 @@
 
 .search-address-button {
   text-decoration: underline;
+}
+
+.card-number-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  justify-content: space-around;
+}
+
+.signup-wrapper {
+  display: flex;
+  margin: 20px 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signup-info {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
