@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <h3 class="form-title">개인정보입력</h3>
+    <h3 class="form-title">개인정보 입력</h3>
     <div class="form-wrapper">
       <div class="form-desc">
         <label class="form-lbl"><strong>이메일</strong></label>
