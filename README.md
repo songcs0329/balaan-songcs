@@ -1,25 +1,4 @@
-# balaan-songcs
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+# 발란 FE 사전과제
 
 ## Project Setup
 
@@ -44,3 +23,20 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## 사용한 패키지와 용도
+
+1. pinia
+   ```
+   SignUpView의 회원가입 과정(step) state를 전역으로 관리하기 위해 사용하였습니다.
+   ```
+2. vue-router
+
+   ```
+   회원가입, 회원가입 완료 페이지 router path 및 컴포넌트 분리를 위해 사용하였습니다.
+   ```
+
+3. reset-css
+   ```
+   브라우저마다 다른 default 값의 스타일을 통일시켜주기 위해 사용하였습니다.
+   ```
