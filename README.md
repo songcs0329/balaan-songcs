@@ -44,9 +44,9 @@ src
 │		├── styles.scss: 실제로 프로젝트에서 사용하는 style 모음
 │		└── index.scss: 위 3개의 scss를 import, main.ts에 해당 scss만 import
 ├── utils: 유틸함수 모음
-│   ├── numberUtil.ts: 숫자와 관련된 util 함수 모음(회원가입 완료 페이지 내 phone에 dash 추가)
-├──	└── validationUtil.ts: 회원가입 시 사용, form 내 입력값의 조건을 만족하는지 체크
-└── views(router에서 각 path별로 랜더링 할 view)
+│		├── numberUtil.ts: 숫자와 관련된 util 함수 모음(회원가입 완료 페이지 내 phone에 dash 추가)
+│		└── validationUtil.ts: 회원가입 시 사용, form 내 입력값의 조건을 만족하는지 체크
+├── views(router에서 각 path별로 랜더링 할 view)
 │		├── SignUpView.vue: 회원가입 페이지 view
 │		└── SignUpEndView.vue: 회원가입 완료 페이지 view
 ├── App.vue: 내부의 여러 컴포넌트를 통합하여 main.ts 전달
