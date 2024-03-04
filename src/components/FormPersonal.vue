@@ -56,11 +56,7 @@ const isNextStep = ref(true);
 const goToNextStep = () => {
   signUp.updateStep(signUp.step + 1);
 
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
-  );
   const payload: TypeSignup.SignupSession = {
-    ...signupSession,
     step: signUp.step,
     email: email.value,
     password: password.value,
