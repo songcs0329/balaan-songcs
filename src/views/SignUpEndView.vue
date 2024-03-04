@@ -28,6 +28,8 @@ import { computed, reactive, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSignUpStore } from '@/stores/signUp';
 import numberUtil from '@/utils/numberUtil';
+import sessionUtil from '@/utils/sessionUtil';
+import sessionConst from '@/constants/sessionConst';
 
 const router = useRouter();
 
@@ -45,7 +47,7 @@ const dashPhoneNumber = computed(() => {
 });
 
 const completeSignUp = () => {
-  sessionStorage.removeItem('signup');
+  sessionUtil.removeSession(sessionConst.SIGNUP);
   signUp.updateStep(1);
 
   router.replace({
@@ -54,8 +56,8 @@ const completeSignUp = () => {
 };
 
 watchEffect(() => {
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
 
   if (signupSession) {
@@ -63,6 +65,10 @@ watchEffect(() => {
     signupInfo.email = signupSession.email ?? '';
     signupInfo.address = `${signupSession.address ?? ''} ${signupSession.addressDetail}`;
     signupInfo.phone = signupSession.phone ?? '';
+  } else {
+    router.replace({
+      name: 'SignUp',
+    });
   }
 });
 </script>

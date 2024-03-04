@@ -40,6 +40,8 @@
 import { ref, reactive, watch, watchEffect } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
 import validationUtil from '@/utils/validationUtil';
+import sessionUtil from '@/utils/sessionUtil';
+import sessionConst from '@/constants/sessionConst';
 
 const signUp = useSignUpStore();
 
@@ -63,11 +65,7 @@ const goToNextStep = () => {
     verify: verify.value,
   };
 
-  handleChangePersonalSate(payload);
-};
-
-const handleChangePersonalSate = (payload: TypeSignup.SignupSession) => {
-  sessionStorage.setItem('signup', JSON.stringify(payload));
+  sessionUtil.setSession(sessionConst.SIGNUP, payload);
 };
 
 watch([email, password, verify], ([email, password, verify]) => {
@@ -122,8 +120,8 @@ watch([email, password, verify], ([email, password, verify]) => {
 });
 
 watchEffect(() => {
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
 
   if (signupSession) {
