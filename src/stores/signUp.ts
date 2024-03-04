@@ -1,17 +1,17 @@
 import { defineStore } from 'pinia';
 
-type SignUpState = {
-  step: 1 | 2 | 3;
+type SignupStepState = {
+  step: number;
 };
 
 export const useSignUpStore = defineStore('signup', {
-  state: (): SignUpState => {
+  state: (): SignupStepState => {
     return {
       step: 1,
     };
   },
   actions: {
-    updateStep(step: 1 | 2 | 3) {
+    updateStep(step: number) {
       this.step = step;
     },
   },
