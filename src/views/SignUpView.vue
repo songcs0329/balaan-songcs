@@ -14,10 +14,12 @@ import FormCardNumber from '@/components/FormCardNumber.vue';
 const signUp = useSignUpStore();
 
 watchEffect(() => {
-  const signupSession = JSON.parse(sessionStorage.getItem('signup'));
+  const signupSession: TypeSignup.SignupSession = JSON.parse(
+    sessionStorage.getItem('signup') as string,
+  );
 
   if (signupSession) {
-    signUp.updateStep(signupSession.step);
+    signUp.updateStep(signupSession.step ?? 1);
   }
 });
 </script>
