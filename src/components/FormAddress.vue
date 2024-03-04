@@ -75,8 +75,10 @@ const goToPrevStep = () => {
 const goToNextStep = () => {
   signUp.updateStep(signUp.step + 1);
 
-  const signupSession = JSON.parse(sessionStorage.getItem('signup'));
-  const payload = {
+  const signupSession: TypeSignup.SignupSession = JSON.parse(
+    sessionStorage.getItem('signup') as string,
+  );
+  const payload: TypeSignup.SignupSession = {
     ...signupSession,
     step: signUp.step,
     username: username.value,
@@ -87,16 +89,18 @@ const goToNextStep = () => {
   handleChangeAddressSate(payload);
 };
 
-const handleChangeAddressSate = (payload) => {
+const handleChangeAddressSate = (payload: TypeSignup.SignupSession) => {
   sessionStorage.setItem('signup', JSON.stringify(payload));
 };
 
 const openDaumPostcode = () => {
-  new window.daum.Postcode({
-    oncomplete: (data) => {
-      address.value = data.address;
-    },
-  }).open();
+  if (typeof window !== 'undefined') {
+    new window.daum.Postcode({
+      oncomplete: (data: any) => {
+        address.value = data.address;
+      },
+    }).open();
+  }
 };
 
 watch(
@@ -150,7 +154,9 @@ watch(
 );
 
 watchEffect(() => {
-  const signupSession = JSON.parse(sessionStorage.getItem('signup'));
+  const signupSession: TypeSignup.SignupSession = JSON.parse(
+    sessionStorage.getItem('signup') as string,
+  );
 
   if (signupSession) {
     username.value = signupSession.username ?? '';

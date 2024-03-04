@@ -4,7 +4,7 @@
     <div class="form-wrapper">
       <div class="form-desc">
         <label class="form-lbl"><strong>이메일</strong></label>
-        <input class="form-input" type="text" v-model="email" />
+        <input class="form-input" type="email" v-model="email" />
         <span v-if="errorMessage.emailMsg" class="form-alert">{{
           errorMessage.emailMsg
         }}</span>
@@ -56,7 +56,11 @@ const isNextStep = ref(true);
 const goToNextStep = () => {
   signUp.updateStep(signUp.step + 1);
 
-  const payload = {
+  const signupSession: TypeSignup.SignupSession = JSON.parse(
+    sessionStorage.getItem('signup') as string,
+  );
+  const payload: TypeSignup.SignupSession = {
+    ...signupSession,
     step: signUp.step,
     email: email.value,
     password: password.value,
@@ -66,7 +70,7 @@ const goToNextStep = () => {
   handleChangePersonalSate(payload);
 };
 
-const handleChangePersonalSate = (payload) => {
+const handleChangePersonalSate = (payload: TypeSignup.SignupSession) => {
   sessionStorage.setItem('signup', JSON.stringify(payload));
 };
 
@@ -122,7 +126,9 @@ watch([email, password, verify], ([email, password, verify]) => {
 });
 
 watchEffect(() => {
-  const signupSession = JSON.parse(sessionStorage.getItem('signup'));
+  const signupSession: TypeSignup.SignupSession = JSON.parse(
+    sessionStorage.getItem('signup') as string,
+  );
 
   if (signupSession) {
     email.value = signupSession.email ?? '';
