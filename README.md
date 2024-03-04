@@ -33,6 +33,7 @@ src
 │		├── FormPersonal.vue: 개인정보 입력 컴포넌트
 │		└── FormCardNumber.vue: 결제정보 입력 컴포넌트
 ├── constants:상수 모음
+│		├── sessionConst.ts: sessionStorage에서 사용할 상수 모음
 │		└── regexConst.ts: 정규식 상수 모음
 ├── router: 라우터(vue-router) 모음
 │		└── index.ts
@@ -44,6 +45,7 @@ src
 │		├── styles.scss: 실제로 프로젝트에서 사용하는 style 모음
 │		└── index.scss: 위 3개의 scss를 import, main.ts에 해당 scss만 import
 ├── utils: 유틸함수 모음
+│		├── sessioUtil.ts: sessionStorage 관련 util 함수 모음
 │		├── numberUtil.ts: 숫자와 관련된 util 함수 모음(회원가입 완료 페이지 내 phone에 dash 추가)
 │		└── validationUtil.ts: 회원가입 시 사용, form 내 입력값의 조건을 만족하는지 체크
 ├── views(router에서 각 path별로 랜더링 할 view)

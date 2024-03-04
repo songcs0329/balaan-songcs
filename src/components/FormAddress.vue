@@ -54,6 +54,8 @@
 import { ref, reactive, watch, watchEffect } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
 import validationUtil from '@/utils/validationUtil';
+import sessionUtil from '@/utils/sessionUtil';
+import sessionConst from '@/constants/sessionConst';
 
 const signUp = useSignUpStore();
 
@@ -75,8 +77,8 @@ const goToPrevStep = () => {
 const goToNextStep = () => {
   signUp.updateStep(signUp.step + 1);
 
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
   const payload: TypeSignup.SignupSession = {
     ...signupSession,
@@ -86,11 +88,8 @@ const goToNextStep = () => {
     address: address.value,
     addressDetail: addressDetail.value,
   };
-  handleChangeAddressSate(payload);
-};
 
-const handleChangeAddressSate = (payload: TypeSignup.SignupSession) => {
-  sessionStorage.setItem('signup', JSON.stringify(payload));
+  sessionUtil.setSession(sessionConst.SIGNUP, payload);
 };
 
 const openDaumPostcode = () => {
@@ -154,8 +153,8 @@ watch(
 );
 
 watchEffect(() => {
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
 
   if (signupSession) {

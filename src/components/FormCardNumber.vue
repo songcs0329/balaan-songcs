@@ -66,6 +66,8 @@ import { reactive, ref, watch, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSignUpStore } from '@/stores/signUp';
 import validationUtil from '@/utils/validationUtil';
+import sessionUtil from '@/utils/sessionUtil';
+import sessionConst from '@/constants/sessionConst';
 
 const router = useRouter();
 
@@ -89,8 +91,8 @@ const goToPrevStep = () => {
 const goToNextStep = () => {
   signUp.updateStep(signUp.step + 1);
 
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
   const payload: TypeSignup.SignupSession = {
     ...signupSession,
@@ -101,11 +103,7 @@ const goToNextStep = () => {
     cardFourth: cardNumber.fourth,
   };
 
-  handleChangeCardNumberSate(payload);
-};
-
-const handleChangeCardNumberSate = (payload: TypeSignup.SignupSession) => {
-  sessionStorage.setItem('signup', JSON.stringify(payload));
+  sessionUtil.setSession(sessionConst.SIGNUP, payload);
 
   router.replace({
     name: 'SignUpEnd',
@@ -132,8 +130,8 @@ watch(cardNumber, (cardNumber) => {
 });
 
 watchEffect(() => {
-  const signupSession: TypeSignup.SignupSession = JSON.parse(
-    sessionStorage.getItem('signup') as string,
+  const signupSession: TypeSignup.SignupSession = sessionUtil.getSeesion(
+    sessionConst.SIGNUP,
   );
 
   if (signupSession) {
