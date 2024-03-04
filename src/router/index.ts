@@ -3,7 +3,7 @@ import SignUpView from '@/views/SignUpView.vue';
 import SignUpEndView from '@/views/SignUpEndView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
